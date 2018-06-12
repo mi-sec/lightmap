@@ -6,9 +6,10 @@
 'use strict';
 
 const
-	chai     = require( 'chai' ),
-	expect   = chai.expect,
-	LightMap = require( '../index' );
+	chai        = require( 'chai' ),
+	expect      = chai.expect,
+	LightMap    = require( '../index' ),
+	{ version } = require( '../package' );
 
 describe( 'LightMap', () => {
 	it( 'LightMap.filter should pass keys and values',
@@ -148,6 +149,10 @@ describe( 'LightMap', () => {
 		}
 	);
 
+	it( 'LightMap.version should equal package version',
+		() => expect( LightMap.version() ).to.eq( `v${ version }` )
+	);
+
 	it( 'LightMap.mapToArray and LightMap.toJSON should return a tuple array',
 		() => {
 			const _ = new LightMap();
@@ -224,7 +229,7 @@ describe( 'LightMap', () => {
 	it( 'Symbol.toStringTag should equal LightMap',
 		() => expect( Object.prototype.toString.call( new LightMap() ) ).to.eq( '[object LightMap]' )
 	);
-	
+
 	it( 'Symbol.hasInstance should be false if instance of Map',
 		() => expect( new Map() instanceof LightMap ).to.eq( false )
 	);
