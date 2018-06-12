@@ -7,8 +7,39 @@
 
 const { version } = require( './package' );
 
+/**
+ * LightMap
+ * @augments Map
+ */
 class LightMap extends Map
 {
+	constructor( n )
+	{
+		super( n );
+
+		this.forEach(
+			( v, k ) => this.set( k, this[ Symbol.constructMapByPattern ]( v ) )
+		);
+	}
+
+	/**
+	 * filter
+	 * @description
+	 * Filter LightMap based on keys and values based in.
+	 * Comparisons can be made on the key and/or value.
+	 * @param {Function} fn - comparing method
+	 * @return {LightMap} - returns new LightMap with filtered results
+	 * @example
+	 * const _ = new LightMap();
+	 * _.set( 'key', 'value' );
+	 * _.set( 'key1', 'value1' );
+	 *
+	 * const result = _.filter(
+	 *     ( v, k ) => k === 'key'
+	 * );
+	 *
+	 * // -> LightMap { 'key' => 'value' }
+	 */
 	filter( fn )
 	{
 		const arr = new LightMap();
@@ -22,6 +53,23 @@ class LightMap extends Map
 		return arr;
 	}
 
+	/**
+	 * map
+	 * @description
+	 * Map LightMap with new key and/or value.
+	 * Return the new item in a "tuple" form matching the Map paradigm (`[ x, y ]`).
+	 * @param {Function} fn - map method
+	 * @return {LightMap} - returns new LightMap with mapped results
+	 * @example
+	 * const _ = new LightMap();
+	 * _.set( 'key', 'value' );
+	 *
+	 * const result = _.map(
+	 *     ( v, k ) => [ k + 1, v + 1 ]
+	 * );
+	 *
+	 * // -> LightMap { 'key1' => 'value1' }
+	 */
 	map( fn )
 	{
 		const arr = new LightMap();
@@ -39,6 +87,29 @@ class LightMap extends Map
 		return arr;
 	}
 
+	/**
+	 * reduce
+	 * @description
+	 * Reduce LightMap with new value.
+	 * Must return the carriage value just like Array.reduce.
+	 * @param {Function} fn - reducing method
+	 * @param {*} r - carriage value
+	 * @param {Iterator<LightMap>} iterator - `LightMap[ Symbol.iterator ]()`
+	 * @return {*} - returns reduced result
+	 * @example
+	 * const _ = new LightMap();
+	 * _.set( 'key', 'value' );
+	 *
+	 * const result = _.reduce(
+	 *     ( r, [ k, v ] ) => {
+	 *         r += `Key: ${ k }\n`;
+	 *         r += `Value: ${ v }\n`;
+	 *         return r;
+	 *     }, ''
+	 * );
+	 *
+	 * // -> 'Key: key\nValue: value\n'
+	 */
 	reduce( fn, r, iterator = this[ Symbol.iterator ]() )
 	{
 		for( const [ key, value ] of iterator ) {
@@ -48,6 +119,23 @@ class LightMap extends Map
 		return r;
 	}
 
+	/**
+	 * map
+	 * @description
+	 * Map LightMap with new key and/or value.
+	 * Return the new item in a "tuple" form matching the Map paradigm (`[ x, y ]`).
+	 * @param {Function?} fn - map method
+	 * @return {LightMap} - returns new LightMap with mapped results
+	 * @example
+	 * const _ = new LightMap();
+	 * _.set( 'key2', 'value2' );
+	 * _.set( 'key1', 'value1' );
+	 * _.set( 'key', 'value' );
+	 *
+	 * const result = _.sortKeys();
+	 *
+	 * // -> LightMap { 'key' => 'value', 'key1' => 'value1', 'key2' => 'value2' }
+	 */
 	sortKeys( fn )
 	{
 		const keys = [ ...this.keys() ].sort( fn );
@@ -94,11 +182,35 @@ class LightMap extends Map
 	// 	return arr;
 	// }
 
+	/**
+	 * version
+	 * @description
+	 * return LightMap module version
+	 * @return {string} - returns LightMap module version
+	 * @example
+	 * LightMap.version();
+	 *
+	 * // -> v0.0.0
+	 */
 	static version()
 	{
 		return `v${ version }`;
 	}
 
+	/**
+	 * mapToArray
+	 * @description
+	 * maps a LightMap object to an array of arrays in the Map Pattern (re-constructable pattern)
+	 * @return {Array} - returns array of tuple key-value pairs
+	 * @example
+	 *
+	 * const _ = new LightMap();
+	 * _.set( 'key', new LightMap( [ [ 'key1', 'value1' ] ] ) );
+	 *
+	 * const result = _.mapToArray();
+	 *
+	 * // -> [ [ 'key', [ [ 'key1', 'value1' ] ] ] ]
+	 */
 	mapToArray()
 	{
 		return this.reduce(
@@ -152,6 +264,14 @@ class LightMap extends Map
 	// 	}
 	// 	return false;
 	// }
+
+	[ Symbol.constructMapByPattern ]( n )
+	{
+		return Array.isArray( n ) ?
+			n.filter( i => i.length === 2 ).length === n.length ?
+				Reflect.construct( LightMap, [ n ] ) :
+				n : n;
+	}
 
 	[ Symbol.search ]( n )
 	{

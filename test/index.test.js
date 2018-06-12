@@ -12,6 +12,7 @@ const
 	{ version } = require( '../package' );
 
 describe( 'LightMap', () => {
+
 	it( 'LightMap.filter should pass keys and values',
 		() => {
 			const _ = new LightMap();
@@ -80,12 +81,12 @@ describe( 'LightMap', () => {
 			_.set( 'key', 'value' );
 
 			const result = _.map(
-				( v, k ) => [ k, v + 1 ]
+				( v, k ) => [ k + 1, v + 1 ]
 			);
 
 			expect( result instanceof LightMap ).to.eq( true );
 			expect( _.get( 'key' ) ).to.eq( 'value' );
-			expect( result.get( 'key' ) ).to.eq( 'value1' );
+			expect( result.get( 'key1' ) ).to.eq( 'value1' );
 		}
 	);
 
@@ -153,14 +154,15 @@ describe( 'LightMap', () => {
 		() => expect( LightMap.version() ).to.eq( `v${ version }` )
 	);
 
-	it( 'LightMap.mapToArray and LightMap.toJSON should return a tuple array',
+	it( 'LightMap.mapToArray and LightMap.toJSON should return a tuple array prepared for reconstruction',
 		() => {
 			const _ = new LightMap();
 			_.set( 'key', new LightMap( [ [ 'key1', 'value1' ] ] ) );
 
 			const
-				result  = _.toJSON(),
-				result1 = _.mapToArray();
+				result      = _.toJSON(),
+				result1     = _.mapToArray(),
+				checkResult = new LightMap( result );
 
 			expect( result[ 0 ].length ).to.eq( 2 );
 			expect( result[ 0 ][ 0 ] ).to.eq( 'key' );
@@ -168,6 +170,20 @@ describe( 'LightMap', () => {
 			expect( result[ 0 ][ 1 ][ 0 ][ 0 ] ).to.eq( 'key1' );
 			expect( result[ 0 ][ 1 ][ 0 ][ 1 ] ).to.eq( 'value1' );
 			expect( result ).to.deep.eq( result1 );
+			expect( checkResult instanceof LightMap ).to.eq( true );
+			expect( checkResult.get( 'key' ) instanceof LightMap ).to.eq( true );
+		}
+	);
+
+	it( 'Symbol.constructMapByPattern should return a tuple array prepared for reconstruction',
+		() => {
+			const _ = new LightMap();
+			_.set( 'key', new LightMap( [ [ 'key1', 'value1' ] ] ) );
+
+			const result = new LightMap( _.toJSON() );
+
+			expect( result instanceof LightMap ).to.eq( true );
+			expect( result.get( 'key' ) instanceof LightMap ).to.eq( true );
 		}
 	);
 
