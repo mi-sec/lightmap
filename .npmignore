@@ -1,7 +1,11 @@
+docs/
 test/
 .git
 .idea
 .editorconfig
+.eslintignore
+.eslintrc.js
 .jshintrc
-.eslintrc
 .npmrc
+jsdocs.js
+
