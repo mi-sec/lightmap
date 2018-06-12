@@ -16,7 +16,7 @@
 		"url": "git+https://github.com/Parellin-Technologies-LLC/lightmap.git"
 	},
 	"author": "iskore <nick@parellin.com>",
-	"license": "ISC",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/Parellin-Technologies-LLC/lightmap/issues"
 	},
