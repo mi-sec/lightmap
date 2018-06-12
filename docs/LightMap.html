@@ -158,6 +158,123 @@
     
 
     
+    <h4 class="name" id=".version"><span class="type-signature">(static) </span>version<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>return LightMap module version</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line195">line 195</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>returns LightMap module version</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>LightMap.version();
+
+// -> v0.0.0</code></pre>
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="filter"><span class="type-signature"></span>filter<span class="signature">(fn)</span><span class="type-signature"> &rarr; {<a href="LightMap.html">LightMap</a>}</span></h4>
     
 
@@ -260,7 +377,7 @@ Comparisons can be made on the key and/or value.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line34">line 34</a>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line43">line 43</a>
     </li></ul></dd>
     
 
@@ -433,7 +550,7 @@ Return the new item in a &quot;tuple&quot; form matching the Map paradigm (<code
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line64">line 64</a>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -498,6 +615,532 @@ const result = _.map(
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="mapToArray"><span class="type-signature"></span>mapToArray<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>maps a LightMap object to an array of arrays in the Map Pattern (re-constructable pattern)</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line214">line 214</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>returns array of tuple key-value pairs</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const _ = new LightMap();
+_.set( 'key', new LightMap( [ [ 'key1', 'value1' ] ] ) );
+
+const result = _.mapToArray();
+
+// -> [ [ 'key', [ [ 'key1', 'value1' ] ] ] ]</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="reduce"><span class="type-signature"></span>reduce<span class="signature">(fn, r, iterator)</span><span class="type-signature"> &rarr; {*}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Reduce LightMap with new value.
+Must return the carriage value just like Array.reduce.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>reducing method</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>r</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>carriage value</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>iterator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Iterator.&lt;<a href="LightMap.html">LightMap</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>LightMap[ Symbol.iterator ]()</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line113">line 113</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>returns reduced result</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const _ = new LightMap();
+_.set( 'key', 'value' );
+
+const result = _.reduce(
+    ( r, [ k, v ] ) => {
+        r += `Key: ${ k }\n`;
+        r += `Value: ${ v }\n`;
+        return r;
+    }, ''
+);
+
+// -> 'Key: key\nValue: value\n'</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="sortKeys"><span class="type-signature"></span>sortKeys<span class="signature">(fn<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="LightMap.html">LightMap</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Map LightMap with new key and/or value.
+Return the new item in a &quot;tuple&quot; form matching the Map paradigm (<code>[ x, y ]</code>).</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>map method</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line139">line 139</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>returns new LightMap with mapped results</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="LightMap.html">LightMap</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const _ = new LightMap();
+_.set( 'key2', 'value2' );
+_.set( 'key1', 'value1' );
+_.set( 'key', 'value' );
+
+const result = _.sortKeys();
+
+// -> LightMap { 'key' => 'value', 'key1' => 'value1', 'key2' => 'value2' }</code></pre>
+
+
+
+        
     
 
     
@@ -519,7 +1162,7 @@ const result = _.map(
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jun 12 2018 09:07:49 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jun 12 2018 10:05:36 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>
