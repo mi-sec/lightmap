@@ -120,12 +120,11 @@ class LightMap extends Map
 	}
 
 	/**
-	 * map
+	 * sortKeys
 	 * @description
-	 * Map LightMap with new key and/or value.
-	 * Return the new item in a "tuple" form matching the Map paradigm (`[ x, y ]`).
-	 * @param {Function?} fn - map method
-	 * @return {LightMap} - returns new LightMap with mapped results
+	 * Map LightMap with sorted key-value pairs.
+	 * @param {Function?} fn - sorting method
+	 * @return {LightMap} - returns new LightMap with sorted results
 	 * @example
 	 * const _ = new LightMap();
 	 * _.set( 'key2', 'value2' );
@@ -280,12 +279,11 @@ class LightMap extends Map
 
 	[ Symbol.replace ]( n )
 	{
-		return this.reduce(
-			( r, [ k, v ] ) => {
-				r = r.replace( k, v );
-				return r;
-			}, n
+		this.forEach(
+			( v, k ) => n = n.replace( k, v )
 		);
+
+		return n;
 	}
 
 	[ Symbol.toPrimitive ]( n )
