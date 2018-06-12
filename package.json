@@ -1,6 +1,6 @@
 {
 	"name": "lightmap",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Extension of Map - adds iterative extensions to Map like map, filter, reduce, sort, etc.",
 	"main": "LightMap.js",
 	"scripts": {
