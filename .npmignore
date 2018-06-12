@@ -1,0 +1,7 @@
+test/
+.git
+.idea
+.editorconfig
+.jshintrc
+.eslintrc
+.npmrc
