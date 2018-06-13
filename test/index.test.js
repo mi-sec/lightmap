@@ -150,6 +150,33 @@ describe( 'LightMap', () => {
 		}
 	);
 
+	it( 'LightMap.sortValues should sort values alphanumerically',
+		() => {
+			const _ = new LightMap();
+			_.set( 'key', 'value2' );
+			_.set( 'key1', 'value1' );
+			_.set( 'key2', 'value' );
+
+			const result = _.sortValues();
+
+			// To validate that insert order is maintained
+			expect( [ ..._.entries() ][ 0 ][ 0 ] ).to.eq( 'key' );
+			expect( [ ..._.entries() ][ 0 ][ 1 ] ).to.eq( 'value2' );
+			expect( [ ..._.entries() ][ 1 ][ 0 ] ).to.eq( 'key1' );
+			expect( [ ..._.entries() ][ 1 ][ 1 ] ).to.eq( 'value1' );
+			expect( [ ..._.entries() ][ 2 ][ 0 ] ).to.eq( 'key2' );
+			expect( [ ..._.entries() ][ 2 ][ 1 ] ).to.eq( 'value' );
+
+			// Checks values are in order but also that the associated keys are being maintained
+			expect( [ ...result.entries() ][ 0 ][ 0 ] ).to.eq( 'key2' );
+			expect( [ ...result.entries() ][ 0 ][ 1 ] ).to.eq( 'value' );
+			expect( [ ...result.entries() ][ 1 ][ 0 ] ).to.eq( 'key1' );
+			expect( [ ...result.entries() ][ 1 ][ 1 ] ).to.eq( 'value1' );
+			expect( [ ...result.entries() ][ 2 ][ 0 ] ).to.eq( 'key' );
+			expect( [ ...result.entries() ][ 2 ][ 1 ] ).to.eq( 'value2' );
+		}
+	);
+
 	it( 'LightMap.version should equal package version',
 		() => expect( LightMap.version() ).to.eq( `v${ version }` )
 	);
