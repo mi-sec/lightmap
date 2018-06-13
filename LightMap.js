@@ -135,7 +135,7 @@ class LightMap extends Map
 	 *
 	 * // -> LightMap { 'key' => 'value', 'key1' => 'value1', 'key2' => 'value2' }
 	 */
-	sortKeys( fn )
+	sortKeys( fn = ( a, b ) => String( a ).localeCompare( String( b ) ) )
 	{
 		const keys = [ ...this.keys() ].sort( fn );
 		let i      = 0;
@@ -148,38 +148,33 @@ class LightMap extends Map
 		);
 	}
 
-	// TODO::: [sortValues] get back to this
-	// sortValues( fn )
-	// {
-	// 	const
-	// 		iterator = this[ Symbol.iterator ](),
-	// 		arr      = [];
-	//
-	// 	let
-	// 		done    = false,
-	// 		current = null,
-	// 		next    = null;
-	//
-	// 	while( !done ) {
-	// 		if( !current ) {
-	// 			current = iterator.next();
-	// 		}
-	//
-	// 		next = iterator.next();
-	// 		done = next.done;
-	//
-	// 		if( done ) {
-	// 			return;
-	// 		}
-	//
-	// 		const x = fn.call( arr, current.value[ 1 ], next.value[ 1 ] );
-	//
-	// 		console.log( x );
-	// 		current = next;
-	// 	}
-	//
-	// 	return arr;
-	// }
+	/**
+	 * sortValues
+	 * @description
+	 * Map LightMap with sorted key-value pairs sorted by value.
+	 * @param {Function?} fn - sorting method
+	 * @return {LightMap} - returns new LightMap with sorted results
+	 * @example
+	 * const _ = new LightMap();
+	 * _.set( 'key', 'value2' );
+	 * _.set( 'key1', 'value1' );
+	 * _.set( 'key2', 'value' );
+	 *
+	 * const result = _.sortValues();
+	 *
+	 * // -> LightMap { 'key2' => 'value', 'key1' => 'value1', 'key' => 'value2' }
+	 */
+	sortValues( fn = ( a, b ) => String( a ).localeCompare( String( b ) ) ) {
+		const entries = [ ...this.entries() ].sort( ( a, b ) => fn( a[ 1 ], b[ 1 ] ) );
+		let i         = 0;
+
+		return this.map(
+			() => {
+				const [ key, value ] = entries[ i++ ];
+				return [ key, value ];
+			}
+		);
+	}
 
 	/**
 	 * version
