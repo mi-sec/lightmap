@@ -1,6 +1,6 @@
 {
 	"name": "@parellin/lightmap",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "Extension of Map - adds iterative extensions to Map like map, filter, reduce, sort, etc.",
 	"main": "index.js",
 	"scripts": {
