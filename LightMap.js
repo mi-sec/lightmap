@@ -16,12 +16,12 @@ class LightMap extends Map
 	constructor( n )
 	{
 		super( n );
-		
+
 		this.forEach(
 			( v, k ) => this.set( k, this[ Symbol.constructMapByPattern ]( v ) )
 		);
 	}
-	
+
 	/**
 	 * filter
 	 * @description
@@ -43,16 +43,16 @@ class LightMap extends Map
 	filter( fn )
 	{
 		const arr = new LightMap();
-		
+
 		for( const [ key, value ] of this[ Symbol.iterator ]() ) {
 			if( fn( value, key, this ) ) {
 				arr.set( key, value );
 			}
 		}
-		
+
 		return arr;
 	}
-	
+
 	/**
 	 * map
 	 * @description
@@ -73,20 +73,20 @@ class LightMap extends Map
 	map( fn )
 	{
 		const arr = new LightMap();
-		
+
 		for( const [ key, value ] of this[ Symbol.iterator ]() ) {
 			let entry = fn( value, key, this );
-			
+
 			if( !entry ) {
 				entry = [ undefined, undefined ];
 			}
-			
+
 			arr.set( entry[ 0 ] || key, entry[ 1 ] || value );
 		}
-		
+
 		return arr;
 	}
-	
+
 	/**
 	 * reduce
 	 * @description
@@ -115,10 +115,10 @@ class LightMap extends Map
 		for( const [ key, value ] of iterator ) {
 			r = fn( r, [ key, value ], key, this );
 		}
-		
+
 		return r;
 	}
-	
+
 	/**
 	 * sortKeys
 	 * @description
@@ -139,7 +139,7 @@ class LightMap extends Map
 	{
 		const keys = [ ...this.keys() ].sort( fn );
 		let i      = 0;
-		
+
 		return this.map(
 			( v, k, iterator ) => {
 				const key = keys[ i++ ];
@@ -147,7 +147,7 @@ class LightMap extends Map
 			}
 		);
 	}
-	
+
 	/**
 	 * sortValues
 	 * @description
@@ -168,7 +168,7 @@ class LightMap extends Map
 	{
 		const entries = [ ...this.entries() ].sort( ( a, b ) => fn( a[ 1 ], b[ 1 ] ) );
 		let i         = 0;
-		
+
 		return this.map(
 			() => {
 				const [ key, value ] = entries[ i++ ];
@@ -176,7 +176,7 @@ class LightMap extends Map
 			}
 		);
 	}
-	
+
 	// TODO: improve this later, not sufficient yet
 	equals( n )
 	{
@@ -184,13 +184,13 @@ class LightMap extends Map
 			if( this.size !== n.size ) {
 				return false;
 			}
-			
+
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * version
 	 * @description
@@ -205,7 +205,7 @@ class LightMap extends Map
 	{
 		return LightMap.version();
 	}
-	
+
 	/**
 	 * version
 	 * @description
@@ -220,7 +220,7 @@ class LightMap extends Map
 	{
 		return `v${ version }`;
 	}
-	
+
 	/**
 	 * mapToArray
 	 * @description
@@ -242,42 +242,49 @@ class LightMap extends Map
 				if( v instanceof LightMap ) {
 					v = v.toJSON();
 				}
-				
+
 				r.push( [ k, v ] );
 				return r;
 			}, []
 		);
 	}
-	
+
 	toJSON()
 	{
 		return this.mapToArray();
 	}
-	
+
 	toString()
 	{
 		return JSON.stringify( this.mapToArray() );
 	}
-	
+
+	/**
+	 * indexOf
+	 * @description
+	 * returns the first index at which a given element can be found in the array, or -1 if it is not present
+	 * @param {string} n - key naem to search for
+	 * @return {number} - index of the element
+	 */
 	indexOf( n )
 	{
 		let i = -1;
-		
+
 		return this.reduce(
 			( r, [ k ] ) => {
 				if( r === -1 ) {
 					i++;
-					
+
 					if( k === n ) {
 						r = i;
 					}
 				}
-				
+
 				return r;
 			}, -1
 		);
 	}
-	
+
 	[ Symbol.constructMapByPattern ]( n )
 	{
 		return Array.isArray( n ) ?
@@ -285,21 +292,35 @@ class LightMap extends Map
 				Reflect.construct( LightMap, [ n ] ) :
 				n : n;
 	}
-	
+
 	[ Symbol.search ]( n )
 	{
 		return this.indexOf( n );
 	}
-	
+
+	/**
+	 * [ Symbol.replace ]
+	 * @description
+	 * symbol specifies the method that replaces matched substrings of a string
+	 * @param {LightMap} n - replacement mapping for string
+	 * @return {string} - string replaced with mapped values
+	 */
 	[ Symbol.replace ]( n )
 	{
 		this.forEach(
 			( v, k ) => n = n.replace( k, v )
 		);
-		
+
 		return n;
 	}
-	
+
+	/**
+	 * [ Symbol.toPrimitive ]
+	 * @description
+	 * symbol that specifies a function valued property that is called to convert an object to a primitive value
+	 * @param {*} n - hint
+	 * @return {*} - hint handler
+	 */
 	[ Symbol.toPrimitive ]( n )
 	{
 		if( n === 'string' ) {
@@ -312,17 +333,17 @@ class LightMap extends Map
 			return this.toString();
 		}
 	}
-	
+
 	get [ Symbol.toStringTag ]()
 	{
 		return this.constructor.name;
 	}
-	
+
 	static get [ Symbol.species ]()
 	{
 		return Map;
 	}
-	
+
 	static [ Symbol.hasInstance ]( instance )
 	{
 		return instance.constructor.name === 'LightMap';

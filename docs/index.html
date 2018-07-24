@@ -43,7 +43,95 @@
 
 
     <section>
-        <article><h1>lightmap</h1><p>Extension of Map - adds iterative extensions to Map like map, filter, reduce, sort, etc.</p></article>
+        <article><p align="center">
+  <img src="https://s3.amazonaws.com/forever-link/github/LightMap.svg" alt="LightMap"/>
+</p>
+
+<p align="center">Fast Map extension for Node.js &amp; The Browser</p>
+
+<h1>LightMap</h1><p>LightMap is an extension of Map that adds iterative extensions to Map like <code>map</code>, <code>filter</code>, <code>reduce</code>, <code>sort</code>, etc.</p>
+<p><a href="https://www.npmjs.com/package/@parellin/lightmap"><img src="https://nodei.co/npm/@parellin/lightmap.png?downloads=true&amp;stars=true&amp;downloadRank=true" alt="NPM"></a></p>
+<h3>Installation</h3><p><code>npm i @parellin/lightmap</code></p>
+<h3>Usage</h3><p><strong>Basic usage:</strong></p>
+<pre class="prettyprint source"><code>const LightMap = require( '@parellin/lightmap' );
+
+const x = new LightMap( [ [ 'a', 'hello' ], [ 'b', 'world' ] ] );
+// LightMap { 'a' => 'hello', 'b' => 'world' }</code></pre><p><strong>Map usage:</strong></p>
+<p>For standard <code>Map</code> usage please refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">MDN Web Docs</a></p>
+<p><strong><code>.filter</code>:</strong></p>
+<p>Filter LightMap based on keys and values based in.
+Comparisons can be made on the key and/or value.</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 'hello' ], [ 'b', 'world' ] ] );
+
+x.filter( ( val, key ) => {
+    return key === 'a';
+} );
+// LightMap { 'a' => 'hello' }</code></pre><p><strong><code>.map</code>:</strong></p>
+<p>Map LightMap with new key and/or value.
+Return the new item in a &quot;tuple&quot; form matching the Map paradigm (<code>[ x, y ]</code>).</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 10 ], [ 'b', 20 ] ] );
+
+x.map( ( val, key ) => {
+    return [ key, val + 10 ];
+} );
+// LightMap { 'a' => 20, 'b' => 30 }</code></pre><p><strong><code>.reduce</code>:</strong></p>
+<p>Reduce LightMap with new value.
+Must return the carriage value just like Array.reduce.</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 'hello' ], [ 'b', 'world' ] ] );
+
+x.reduce( ( r, [ key, val ] ) => {
+    r += val + ' ';
+    return r;
+}, '' );
+// hello world </code></pre><p><strong><code>.sortKeys</code>:</strong></p>
+<p>Map LightMap with sorted key-value pairs.</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'b', 'world' ], [ 'a', 'hello' ] ] );
+
+x.sortKeys()
+// LightMap { 'a' => 'hello', 'b' => 'world' }</code></pre><p><strong><code>.sortValues</code>:</strong></p>
+<p>Map LightMap with sorted key-value pairs sorted by value.</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 10 ], [ 'b', 5 ], [ 'c', 1 ] ] );
+
+x.sortValues( ( a, b ) => a >= b )
+// LightMap { 'c' => 1, 'b' => 5, 'a' => 10 }
+
+x.sortValues( ( a, b ) => a &lt;= b )
+// LightMap { 'a' => 10, 'b' => 5, 'c' => 1 }</code></pre><p><strong><code>.mapToArray</code>:</strong></p>
+<p>maps a LightMap object to an array of arrays in the Map Pattern (re-constructable pattern)</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
+x.mapToArray();
+// [ [ 'a', 0 ], [ 'b', 1 ] ]</code></pre><p><strong><code>.toJSON</code>:</strong></p>
+<p>Native class override - returns <code>.mapToArray</code> method</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
+x.toJSON();
+// [ [ 'a', 0 ], [ 'b', 1 ] ]</code></pre><p><strong><code>.toString</code>:</strong></p>
+<p>Native class override - returns JSON stringified <code>.mapToArray</code></p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
+x.toString();
+// [[&quot;a&quot;,0],[&quot;b&quot;,1]]</code></pre><p><strong><code>.indexOf</code>:</strong></p>
+<p>returns the first index at which a given element can be found in the array, or -1 if it is not present</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
+x.indexOf( 'b' );
+// 1</code></pre><p><strong><code>[ Symbol.replace ]</code>:</strong></p>
+<p>symbol specifies the method that replaces matched substrings of a string</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ '{{ a }}', 'hello' ], [ '{{ b }}', 'world' ] ] );
+
+'{{ a }} {{ b }}'.replace( x );
+// hello world</code></pre><p><strong><code>[ Symbol.toPrimitive( string ) ]</code>:</strong></p>
+<p>symbol that specifies a function valued property that is called to convert an object to a primitive value</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
+'' + x;
+// [[&quot;a&quot;,0],[&quot;b&quot;,1]]</code></pre><p><strong><code>[ Symbol.toPrimitive( number ) ]</code>:</strong></p>
+<p>symbol that specifies a function valued property that is called to convert an object to a primitive value</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
++x;
+// 2 (size of the Map)</code></pre></article>
     </section>
 
 
@@ -60,7 +148,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jun 13 2018 14:56:47 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jul 24 2018 08:04:57 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
