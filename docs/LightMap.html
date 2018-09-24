@@ -210,7 +210,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line219">line 219</a>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line289">line 289</a>
     </li></ul></dd>
     
 
@@ -448,6 +448,403 @@ const result = _.filter(
     
 
     
+    <h4 class="name" id="find"><span class="type-signature"></span>find<span class="signature">(fn, iterator)</span><span class="type-signature"> &rarr; {Array.&lt;(*|*)>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The <code>find()</code> method returns the tuple pair of the first element in the LightMap that satisfies the provided
+testing function.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>find method</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>iterator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Iterator.&lt;<a href="LightMap.html">LightMap</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>LightMap[ Symbol.iterator ]()</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line143">line 143</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>returns tuple result</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;(*|*)></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const _ = new LightMap();
+_.set( 'key', 'value' );
+_.set( 'key1', 'value1' );
+
+const result = _.find(
+    ( v, k, arr ) => {
+        return v === 'value';
+    }
+);
+
+// -> [ 'key', 'value' ]</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="findAll"><span class="type-signature"></span>findAll<span class="signature">(fn, iterator)</span><span class="type-signature"> &rarr; {<a href="LightMap.html">LightMap</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The <code>findAll()</code> method returns a LightMap of tuple pairs matching all conditions that satisfy the provided
+testing function.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>findAll method</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>iterator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Iterator.&lt;<a href="LightMap.html">LightMap</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p><code>LightMap[ Symbol.iterator ]()</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line179">line 179</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>returns new LightMap with matching results</li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="LightMap.html">LightMap</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const _ = new LightMap();
+_.set( 'key', 'value' );
+_.set( 'key1', 'value' );
+_.set( 'key2', 'value2' );
+
+const result = _.findAll(
+     ( v, k, arr ) => {
+			return v === 'value';
+		}
+);
+
+// -> LightMap { 'key' => 'value', 'key1' => 'value' }</code></pre>
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="indexOf"><span class="type-signature"></span>indexOf<span class="signature">(n)</span><span class="type-signature"> &rarr; {number}</span></h4>
     
 
@@ -549,7 +946,7 @@ const result = _.filter(
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line269">line 269</a>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line339">line 339</a>
     </li></ul></dd>
     
 
@@ -831,7 +1228,7 @@ const result = _.map(
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line238">line 238</a>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line308">line 308</a>
     </li></ul></dd>
     
 
@@ -1234,7 +1631,7 @@ const result = _.reduce(
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line138">line 138</a>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line208">line 208</a>
     </li></ul></dd>
     
 
@@ -1417,7 +1814,7 @@ const result = _.sortKeys();
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line167">line 167</a>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line237">line 237</a>
     </li></ul></dd>
     
 
@@ -1539,7 +1936,7 @@ const result = _.sortValues();
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line204">line 204</a>
+        <a href="LightMap.js.html">LightMap.js</a>, <a href="LightMap.js.html#line274">line 274</a>
     </li></ul></dd>
     
 
@@ -1620,7 +2017,7 @@ const result = _.sortValues();
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jul 24 2018 08:04:57 GMT-0400 (Eastern Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Sep 24 2018 16:42:12 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

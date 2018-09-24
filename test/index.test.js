@@ -132,6 +132,85 @@ describe( 'LightMap', () => {
 		}
 	);
 	
+	it( 'LightMap.find should pass value, key, and the original iterator',
+		() => {
+			const _ = new LightMap();
+			let k, v, self;
+			
+			_.set( 'key', 'value' );
+			
+			_.find(
+				( _v, _k, _self ) => {
+					v    = _v;
+					k    = _k;
+					self = _self;
+				}
+			);
+			
+			expect( k ).to.eq( 'key' );
+			expect( v ).to.eq( 'value' );
+			expect( self instanceof LightMap ).to.eq( true );
+		}
+	);
+	
+	it( 'LightMap.find should return a single tuple pair of that match the condition',
+		() => {
+			const _ = new LightMap();
+			_.set( 'key', 'value' );
+			_.set( 'key1', 'value' );
+			_.set( 'key2', 'value2' );
+			
+			const result = _.find(
+				( v, k ) => v === 'value' && k === 'key'
+			);
+			
+			expect( Array.isArray( result ) ).to.eq( true );
+			expect( result.length ).to.eq( 2 );
+			expect( result[ 0 ] ).to.eq( 'key' );
+			expect( result[ 1 ] ).to.eq( 'value' );
+		}
+	);
+	
+	it( 'LightMap.findAll should pass value, key, and the original iterator',
+		() => {
+			const _ = new LightMap();
+			let k, v, self;
+			
+			_.set( 'key', 'value' );
+			
+			_.findAll(
+				( _v, _k, _self ) => {
+					v    = _v;
+					k    = _k;
+					self = _self;
+				}
+			);
+			
+			expect( k ).to.eq( 'key' );
+			expect( v ).to.eq( 'value' );
+			expect( self instanceof LightMap ).to.eq( true );
+		}
+	);
+	
+	it( 'LightMap.findAll should return a new LightMap of items that match the condition',
+		() => {
+			const _ = new LightMap();
+			_.set( 'key', 'value' );
+			_.set( 'key1', 'value' );
+			_.set( 'key2', 'value2' );
+			
+			const result = _.findAll(
+				v => v === 'value'
+			);
+			
+			expect( result instanceof LightMap ).to.eq( true );
+			expect( result.size ).to.eq( 2 );
+			expect( result.get( 'key' ) ).to.eq( 'value' );
+			expect( result.get( 'key1' ) ).to.eq( 'value' );
+		}
+	);
+	
+	
 	it( 'LightMap.sortKeys should sort keys alphanumerically',
 		() => {
 			const _ = new LightMap();

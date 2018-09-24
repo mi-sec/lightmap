@@ -16,12 +16,12 @@ class LightMap extends Map
 	constructor( n )
 	{
 		super( n );
-
+		
 		this.forEach(
 			( v, k ) => this.set( k, this[ Symbol.constructMapByPattern ]( v ) )
 		);
 	}
-
+	
 	/**
 	 * filter
 	 * @description
@@ -43,16 +43,16 @@ class LightMap extends Map
 	filter( fn )
 	{
 		const arr = new LightMap();
-
+		
 		for( const [ key, value ] of this[ Symbol.iterator ]() ) {
 			if( fn( value, key, this ) ) {
 				arr.set( key, value );
 			}
 		}
-
+		
 		return arr;
 	}
-
+	
 	/**
 	 * map
 	 * @description
@@ -73,20 +73,20 @@ class LightMap extends Map
 	map( fn )
 	{
 		const arr = new LightMap();
-
+		
 		for( const [ key, value ] of this[ Symbol.iterator ]() ) {
 			let entry = fn( value, key, this );
-
+			
 			if( !entry ) {
 				entry = [ undefined, undefined ];
 			}
-
+			
 			arr.set( entry[ 0 ] || key, entry[ 1 ] || value );
 		}
-
+		
 		return arr;
 	}
-
+	
 	/**
 	 * reduce
 	 * @description
@@ -115,10 +115,80 @@ class LightMap extends Map
 		for( const [ key, value ] of iterator ) {
 			r = fn( r, [ key, value ], key, this );
 		}
-
+		
 		return r;
 	}
-
+	
+	/**
+	 * find
+	 * @description
+	 * The `find()` method returns the tuple pair of the first element in the LightMap that satisfies the provided
+	 * testing function.
+	 * @param {Function} fn - find method
+	 * @param {Iterator<LightMap>} iterator - `LightMap[ Symbol.iterator ]()`
+	 * @return {Array<*|*>} - returns tuple result
+	 * @example
+	 * const _ = new LightMap();
+	 * _.set( 'key', 'value' );
+	 * _.set( 'key1', 'value1' );
+	 *
+	 * const result = _.find(
+	 *     ( v, k, arr ) => {
+	 *         return v === 'value';
+	 *     }
+	 * );
+	 *
+	 * // -> [ 'key', 'value' ]
+	 */
+	find( fn, iterator = this[ Symbol.iterator ]() )
+	{
+		let r;
+		
+		for( const [ key, value ] of iterator ) {
+			if( fn( value, key, this ) ) {
+				r = [ key, value ];
+				break;
+			}
+		}
+		
+		return r;
+	}
+	
+	/**
+	 * findAll
+	 * @description
+	 * The `findAll()` method returns a LightMap of tuple pairs matching all conditions that satisfy the provided
+	 * testing function.
+	 * @param {Function} fn - findAll method
+	 * @param {Iterator<LightMap>} iterator - `LightMap[ Symbol.iterator ]()`
+	 * @return {LightMap} - returns new LightMap with matching results
+	 * @example
+	 * const _ = new LightMap();
+	 * _.set( 'key', 'value' );
+	 * _.set( 'key1', 'value' );
+	 * _.set( 'key2', 'value2' );
+	 *
+	 * const result = _.findAll(
+	 *      ( v, k, arr ) => {
+	 * 			return v === 'value';
+	 * 		}
+	 * );
+	 *
+	 * // -> LightMap { 'key' => 'value', 'key1' => 'value' }
+	 */
+	findAll( fn, iterator = this[ Symbol.iterator ]() )
+	{
+		const r = new LightMap();
+		
+		for( const [ key, value ] of iterator ) {
+			if( fn( value, key, this ) ) {
+				r.set( key, value );
+			}
+		}
+		
+		return r;
+	}
+	
 	/**
 	 * sortKeys
 	 * @description
@@ -139,7 +209,7 @@ class LightMap extends Map
 	{
 		const keys = [ ...this.keys() ].sort( fn );
 		let i      = 0;
-
+		
 		return this.map(
 			( v, k, iterator ) => {
 				const key = keys[ i++ ];
@@ -147,7 +217,7 @@ class LightMap extends Map
 			}
 		);
 	}
-
+	
 	/**
 	 * sortValues
 	 * @description
@@ -168,7 +238,7 @@ class LightMap extends Map
 	{
 		const entries = [ ...this.entries() ].sort( ( a, b ) => fn( a[ 1 ], b[ 1 ] ) );
 		let i         = 0;
-
+		
 		return this.map(
 			() => {
 				const [ key, value ] = entries[ i++ ];
@@ -176,7 +246,7 @@ class LightMap extends Map
 			}
 		);
 	}
-
+	
 	// TODO: improve this later, not sufficient yet
 	equals( n )
 	{
@@ -184,13 +254,13 @@ class LightMap extends Map
 			if( this.size !== n.size ) {
 				return false;
 			}
-
+			
 			return true;
 		}
-
+		
 		return false;
 	}
-
+	
 	/**
 	 * version
 	 * @description
@@ -205,7 +275,7 @@ class LightMap extends Map
 	{
 		return LightMap.version();
 	}
-
+	
 	/**
 	 * version
 	 * @description
@@ -220,7 +290,7 @@ class LightMap extends Map
 	{
 		return `v${ version }`;
 	}
-
+	
 	/**
 	 * mapToArray
 	 * @description
@@ -242,23 +312,23 @@ class LightMap extends Map
 				if( v instanceof LightMap ) {
 					v = v.toJSON();
 				}
-
+				
 				r.push( [ k, v ] );
 				return r;
 			}, []
 		);
 	}
-
+	
 	toJSON()
 	{
 		return this.mapToArray();
 	}
-
+	
 	toString()
 	{
 		return JSON.stringify( this.mapToArray() );
 	}
-
+	
 	/**
 	 * indexOf
 	 * @description
@@ -269,22 +339,22 @@ class LightMap extends Map
 	indexOf( n )
 	{
 		let i = -1;
-
+		
 		return this.reduce(
 			( r, [ k ] ) => {
 				if( r === -1 ) {
 					i++;
-
+					
 					if( k === n ) {
 						r = i;
 					}
 				}
-
+				
 				return r;
 			}, -1
 		);
 	}
-
+	
 	[ Symbol.constructMapByPattern ]( n )
 	{
 		return Array.isArray( n ) ?
@@ -292,12 +362,12 @@ class LightMap extends Map
 				Reflect.construct( LightMap, [ n ] ) :
 				n : n;
 	}
-
+	
 	[ Symbol.search ]( n )
 	{
 		return this.indexOf( n );
 	}
-
+	
 	/**
 	 * [ Symbol.replace ]
 	 * @description
@@ -310,10 +380,10 @@ class LightMap extends Map
 		this.forEach(
 			( v, k ) => n = n.replace( k, v )
 		);
-
+		
 		return n;
 	}
-
+	
 	/**
 	 * [ Symbol.toPrimitive ]
 	 * @description
@@ -333,17 +403,17 @@ class LightMap extends Map
 			return this.toString();
 		}
 	}
-
+	
 	get [ Symbol.toStringTag ]()
 	{
 		return this.constructor.name;
 	}
-
+	
 	static get [ Symbol.species ]()
 	{
 		return Map;
 	}
-
+	
 	static [ Symbol.hasInstance ]( instance )
 	{
 		return instance.constructor.name === 'LightMap';
