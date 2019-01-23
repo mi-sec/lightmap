@@ -319,6 +319,34 @@ class LightMap extends Map
 		);
 	}
 	
+	/**
+	 * toObject
+	 * @description
+	 * maps a LightMap object's keys and values to an object
+	 * @return {Object} - returns Object of key-value pairs
+	 * @example
+	 *
+	 * const _ = new LightMap();
+	 * _.set( 'key', new LightMap( [ [ 'key1', 'value1' ] ] ) );
+	 *
+	 * const result = _.toObject();
+	 *
+	 * // -> { key: { key1: 'value1' } }
+	 */
+	toObject()
+	{
+		return this.reduce(
+			( r, [ k, v ] ) => {
+				if( v instanceof LightMap ) {
+					v = v.toObject();
+				}
+				
+				r[ k ] = v;
+				return r;
+			}, {}
+		);
+	}
+	
 	toJSON()
 	{
 		return this.mapToArray();
