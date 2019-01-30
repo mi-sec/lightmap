@@ -296,6 +296,24 @@ describe( 'LightMap', () => {
 		}
 	);
 	
+	
+	// Create a LightMap ID and check for circular references
+	it( 'LightMap.toObject should recursively map LightMaps',
+		() => {
+			const _ = new LightMap();
+			_.set( 'key', new LightMap( [
+				[ 'keyA', 'valueA' ],
+				[ 'keyB', new LightMap( [ [ 'key2', 'value2' ] ] ) ]
+			] ) );
+			
+			const
+				result   = _.toObject(),
+				expected = { key: { keyA: 'valueA', keyB: { key2: 'value2' } } };
+			
+			expect( result ).to.deep.eq( expected );
+		}
+	);
+	
 	it( 'LightMap.mapToArray and LightMap.toJSON should return a tuple array prepared for reconstruction',
 		() => {
 			const _ = new LightMap();

@@ -335,6 +335,7 @@ class LightMap extends Map
 	 */
 	toObject()
 	{
+		console.log( this );
 		return this.reduce(
 			( r, [ k, v ] ) => {
 				if( v instanceof LightMap ) {
