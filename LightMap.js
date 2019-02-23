@@ -333,6 +333,7 @@ class LightMap extends Map
 	 *
 	 * // -> { key: { key1: 'value1' } }
 	 */
+	// TODO: check for circular references
 	toObject()
 	{
 		return this.reduce(
