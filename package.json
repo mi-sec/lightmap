@@ -15,14 +15,19 @@
 		"type": "git",
 		"url": "git+https://github.com/Parellin-Technologies-LLC/lightmap.git"
 	},
-	"author": "iskore <nick@parellin.com>",
+	"author": "Nick Soggin <nick@parellin.com>",
+	"contributors": [
+		{
+			"name": "Bobby Simic"
+		}
+	],
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/Parellin-Technologies-LLC/lightmap/issues"
 	},
 	"homepage": "https://github.com/Parellin-Technologies-LLC/lightmap#readme",
 	"devDependencies": {
-		"chai": "^4.1.2",
+		"chai": "4.2.0",
 		"chai-as-promised": "^7.1.1",
 		"eslint": "^4.19.1",
 		"jsdoc-to-markdown": "^4.0.1",

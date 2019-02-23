@@ -361,7 +361,7 @@ class LightMap extends Map
 	 * indexOf
 	 * @description
 	 * returns the first index at which a given element can be found in the array, or -1 if it is not present
-	 * @param {string} n - key naem to search for
+	 * @param {string} n - key name to search for
 	 * @return {number} - index of the element
 	 */
 	indexOf( n )
