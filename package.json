@@ -1,5 +1,5 @@
 {
-	"name": "@parellin/lightmap",
+	"name": "@misec/lightmap",
 	"version": "0.1.2",
 	"description": "Extension of Map - adds iterative extensions to Map like map, filter, reduce, sort, etc.",
 	"main": "index.js",
@@ -13,9 +13,9 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Parellin-Technologies-LLC/lightmap.git"
+		"url": "git+https://github.com/mi-sec/lightmap.git"
 	},
-	"author": "Nick Soggin <nick@parellin.com>",
+	"author": "MI-SEC <admin@mi-sec.com>",
 	"contributors": [
 		{
 			"name": "Bobby Simic"
@@ -23,14 +23,14 @@
 	],
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/Parellin-Technologies-LLC/lightmap/issues"
+		"url": "https://github.com/mi-sec/lightmap/issues"
 	},
-	"homepage": "https://github.com/Parellin-Technologies-LLC/lightmap#readme",
+	"homepage": "https://github.com/mi-sec/lightmap#readme",
 	"devDependencies": {
 		"chai": "4.2.0",
-		"chai-as-promised": "^7.1.1",
-		"eslint": "^4.19.1",
-		"jsdoc-to-markdown": "^4.0.1",
-		"mocha": "^5.2.0"
+		"chai-as-promised": "7.1.1",
+		"eslint": "5.16.0",
+		"jsdoc-to-markdown": "5.0.0",
+		"mocha": "6.1.4"
 	}
 }
