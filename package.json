@@ -1,5 +1,5 @@
 {
-	"name": "@misec/lightmap",
+	"name": "@mi-sec/lightmap",
 	"version": "0.1.4",
 	"description": "Extension of Map - adds iterative extensions to Map like map, filter, reduce, sort, etc.",
 	"main": "index.js",

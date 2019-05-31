@@ -8,17 +8,17 @@
 
 LightMap is an extension of Map that adds iterative extensions to Map like `map`, `filter`, `reduce`, `sort`, etc.
 
-[![NPM](https://nodei.co/npm/@misec/lightmap.png?downloads=true&stars=true&downloadRank=true)](https://www.npmjs.com/package/@misec/lightmap)
+[![NPM](https://nodei.co/npm/@mi-sec/lightmap.png?downloads=true&stars=true&downloadRank=true)](https://www.npmjs.com/package/@mi-sec/lightmap)
 
 ### Installation
 
-`npm i @misec/lightmap`
+`npm i @mi-sec/lightmap`
 
 ### Usage
 
 **Basic usage:**
 ```
-const LightMap = require( '@misec/lightmap' );
+const LightMap = require( '@mi-sec/lightmap' );
 
 const x = new LightMap( [ [ 'a', 'hello' ], [ 'b', 'world' ] ] );
 // LightMap { 'a' => 'hello', 'b' => 'world' }
