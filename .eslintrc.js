@@ -3,14 +3,17 @@ module.exports = {
 		es6: true,
 		node: true
 	},
-	extends: 'eslint:recommended',
+
+	extends: [
+		'eslint:recommended'
+	],
+
 	parserOptions: {
+		parser: 'babel-eslint',
 		ecmaVersion: 2017,
-		ecmaFeatures: {
-			experimentalObjectRestSpread: true
-		},
 		sourceType: 'module'
 	},
+
 	globals: {
 		before: true,
 		after: true,
@@ -20,6 +23,7 @@ module.exports = {
 		JSON: true,
 		console: true,
 		'$': true,
+		M: true,
 		document: true,
 		location: true,
 		window: true,
@@ -29,12 +33,16 @@ module.exports = {
 		L: true,
 		Materialize: true,
 		navigator: true,
-		alert: true
+		alert: true,
+		import: true,
+		require: true,
+		fetch: true
 	},
+
 	rules: {
 		indent: [
 			2,
-			'tab',
+			4,
 			{ SwitchCase: 1 }
 		],
 		'linebreak-style': [ 2, 'unix' ],
@@ -65,8 +73,8 @@ module.exports = {
 		'comma-spacing': [
 			1,
 			{
-				'before': false,
-				'after': true
+				before: false,
+				after: true
 			}
 		],
 		'comma-style': [ 1, 'last' ],
@@ -80,8 +88,8 @@ module.exports = {
 		'generator-star-spacing': [
 			1,
 			{
-				'before': true,
-				'after': true
+				before: true,
+				after: true
 			}
 		],
 		'handle-callback-err': [ 1, '^(err|error)$' ],
@@ -90,11 +98,11 @@ module.exports = {
 			1,
 			{
 				overrides: {
-					catch: { after: false },
-					if: { after: false },
-					for: { after: false },
-					while: { after: false },
-					switch: { after: false }
+					catch: { after: true },
+					if: { after: true },
+					for: { after: true },
+					while: { after: true },
+					switch: { after: true }
 				}
 			}
 		],
@@ -111,10 +119,10 @@ module.exports = {
 		'no-case-declarations': 'off',
 		'no-class-assign': 1,
 		'no-cond-assign': 1,
-		'no-console': 'off',
+		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'no-const-assign': 1,
 		'no-control-regex': 1,
-		'no-debugger': 1,
+		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'no-delete-var': 1,
 		'no-dupe-args': 1,
 		'no-dupe-class-members': 1,
@@ -127,7 +135,7 @@ module.exports = {
 		'no-ex-assign': 1,
 		'no-extend-native': 1,
 		'no-extra-bind': 1,
-		'no-extra-boolean-cast': 1,
+		'no-extra-boolean-cast': 'off',
 		'no-extra-parens': [ 1, 'functions' ],
 		'no-fallthrough': 1,
 		'no-floating-decimal': 1,
@@ -200,7 +208,7 @@ module.exports = {
 		'no-useless-escape': 1,
 		'no-whitespace-before-property': 1,
 		'no-with': 1,
-		'one-var': [ 1, { var: 'always' } ],
+		'one-var': [ 1, { 'var': 'always' } ],
 		'operator-linebreak': [
 			1,
 			'after',
@@ -233,7 +241,11 @@ module.exports = {
 			}
 		],
 		'space-before-blocks': [ 1, 'always' ],
-		'space-before-function-paren': [ 1, 'never' ],
+		'space-before-function-paren': [ 1, {
+			anonymous: 'never',
+			named: 'never',
+			asyncArrow: 'always'
+		} ],
 		'space-in-parens': [ 1, 'always' ],
 		'space-infix-ops': 1,
 		'space-unary-ops': [
@@ -259,11 +271,27 @@ module.exports = {
 			}
 		],
 		'use-isnan': 1,
-		'valid-jsdoc': [ 1, { 'requireReturn': false } ],
+		'valid-jsdoc': [ 1, { requireReturn: false } ],
 		'valid-typeof': 1,
 		'wrap-iife': [ 1, 'any' ],
 		'yield-star-spacing': [ 1, 'both' ],
 		yoda: [ 1, 'never' ],
-		'max-statements-per-line': [ 1, { 'max': 2 } ]
-	}
+		'max-statements-per-line': [ 1, { max: 2 } ]
+	},
+
+	overrides: [
+		{
+			files: [ '*.vue' ],
+			rules: {
+				'indent': 'off',
+				'vue/script-indent': [
+					'warn',
+					'tab',
+					{ baseIndent: 1 }
+				]
+			}
+		}
+	],
+
+	root: true
 };

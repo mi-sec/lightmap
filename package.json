@@ -1,36 +1,36 @@
 {
-	"name": "@mi-sec/lightmap",
-	"version": "0.1.4",
-	"description": "Extension of Map - adds iterative extensions to Map like map, filter, reduce, sort, etc.",
-	"main": "index.js",
-	"scripts": {
-		"clean": "npm outdated && npm prune",
-		"cleanInstall": "rm -rf node_modules/ package-lock.json && npm i",
-		"docs": "jsdoc -c jsdocs.js -r",
-		"lint": "eslint .",
-		"preversion": "npm test",
-		"test": "mocha --trace-warnings"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/mi-sec/lightmap.git"
-	},
-	"author": "MI-SEC <admin@mi-sec.com>",
-	"contributors": [
-		{
-			"name": "Bobby Simic"
-		}
-	],
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/mi-sec/lightmap/issues"
-	},
-	"homepage": "https://github.com/mi-sec/lightmap#readme",
-	"devDependencies": {
-		"chai": "4.2.0",
-		"chai-as-promised": "7.1.1",
-		"eslint": "5.16.0",
-		"jsdoc-to-markdown": "5.0.0",
-		"mocha": "6.1.4"
-	}
+    "name": "@mi-sec/lightmap",
+    "version": "0.1.4",
+    "description": "Extension of Map - adds iterative extensions to Map like map, filter, reduce, sort, etc.",
+    "main": "index.js",
+    "scripts": {
+        "clean": "npm outdated && npm prune",
+        "cleanInstall": "rm -rf node_modules/ package-lock.json && npm i",
+        "docs": "jsdoc -c jsdocs.js -r",
+        "lint": "eslint .",
+        "preversion": "npm test",
+        "test": "mocha --trace-warnings"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mi-sec/lightmap.git"
+    },
+    "author": "MI-SEC <admin@mi-sec.com>",
+    "contributors": [
+        {
+            "name": "Bobby Simic"
+        }
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/mi-sec/lightmap/issues"
+    },
+    "homepage": "https://github.com/mi-sec/lightmap#readme",
+    "devDependencies": {
+        "chai": "4.2.0",
+        "chai-as-promised": "7.1.1",
+        "eslint": "5.16.0",
+        "jsdoc-to-markdown": "5.0.0",
+        "mocha": "6.1.4"
+    }
 }
