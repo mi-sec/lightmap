@@ -215,15 +215,6 @@ class LightMap extends Map
     }
 
     /**
-     * @typedef {function(value, key, ref)} SortKeysCallback
-     * @callback SortKeysCallback
-     * @param {*} a -
-     * @param {string | *} key - map key
-     * @param {LightMap} refMap - original LightMap
-     * @returns {LightMap} - LightMap of all found values
-     */
-
-    /**
      * sortKeys
      * @description
      * Map LightMap with sorted key-value pairs.
