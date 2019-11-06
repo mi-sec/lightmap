@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="https://s3.amazonaws.com/forever-link/github/LightMap.svg" alt="LightMap"/>
+  <img src="https://repository-images.githubusercontent.com/136985658/d04d2300-8125-11e9-8377-864d0542984f"
+       alt="LightMap"
+       width="300px"
+  />
 </p>
 
 <p align="center">Fast Map extension for Node.js & The Browser</p>
