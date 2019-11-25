@@ -5,9 +5,7 @@
  *******************************************************************************************************/
 'use strict';
 
-const
-    { version } = require( './package' ),
-    { isArray } = Array;
+const { version } = require( './package.json' );
 
 /**
  * LightMap
@@ -414,7 +412,7 @@ class LightMap extends Map
 
     [ Symbol.constructMapByPattern ]( n )
     {
-        return isArray( n ) && n.every( v => isArray( v ) && v.length === 2 ) ? new LightMap( n ) : n;
+        return Array.isArray( n ) && n.every( v => Array.isArray( v ) && v.length === 2 ) ? new LightMap( n ) : n;
     }
 
     [ Symbol.search ]( n )
