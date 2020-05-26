@@ -9,3 +9,5 @@ test/
 .jshintrc
 .npmrc
 jsdocs.js
+.nyc_output
+coverage
