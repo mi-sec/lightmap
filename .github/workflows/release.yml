@@ -5,7 +5,7 @@ on:
     types: [created]
 
 jobs:
-  publishNpm:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
