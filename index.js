@@ -445,14 +445,8 @@ class LightMap extends Map
      */
     [ Symbol.toPrimitive ]( n )
     {
-        if ( n === 'string' ) {
-            return this.toString();
-        }
-        else if ( n === 'number' ) {
+        if ( n === 'number' ) {
             return +this.size;
-        }
-        else if ( n === 'boolean' ) {
-            return !!this;
         }
         else {
             return this.toString();
@@ -471,7 +465,9 @@ class LightMap extends Map
 
     static [ Symbol.hasInstance ]( instance )
     {
-        return instance.constructor.name === 'LightMap';
+        return !!instance &&
+            instance.constructor &&
+            instance.constructor.name === 'LightMap';
     }
 }
 

@@ -43,8 +43,11 @@ describe( 'LightMap', () => {
 
     it( 'LightMap.filter should pass keys and values',
         () => {
-            const _ = new LightMap();
-            let k, v, self;
+            const _  = new LightMap();
+            let
+                k    = null,
+                v    = null,
+                self = null;
 
             _.set( 'key', 'value' );
 
@@ -84,8 +87,11 @@ describe( 'LightMap', () => {
 
     it( 'LightMap.map should pass keys and values',
         () => {
-            const _ = new LightMap();
-            let k, v, self;
+            const _  = new LightMap();
+            let
+                k    = null,
+                v    = null,
+                self = null;
 
             _.set( 'key', 'value' );
 
@@ -120,8 +126,13 @@ describe( 'LightMap', () => {
 
     it( 'LightMap.reduce should pass return item, keys, and values',
         () => {
-            const _ = new LightMap();
-            let r, k, v, key, self;
+            const _  = new LightMap();
+            let
+                r    = null,
+                k    = null,
+                v    = null,
+                key  = null,
+                self = null;
 
             _.set( 'key', 'value' );
 
@@ -162,8 +173,11 @@ describe( 'LightMap', () => {
 
     it( 'LightMap.find should pass value, key, and the original iterator',
         () => {
-            const _ = new LightMap();
-            let k, v, self;
+            const _  = new LightMap();
+            let
+                k    = null,
+                v    = null,
+                self = null;
 
             _.set( 'key', 'value' );
 
@@ -201,8 +215,11 @@ describe( 'LightMap', () => {
 
     it( 'LightMap.findAll should pass value, key, and the original iterator',
         () => {
-            const _ = new LightMap();
-            let k, v, self;
+            const _  = new LightMap();
+            let
+                k    = null,
+                v    = null,
+                self = null;
 
             _.set( 'key', 'value' );
 
@@ -434,11 +451,24 @@ describe( 'LightMap', () => {
         () => expect( Object.prototype.toString.call( new LightMap() ) ).to.eq( '[object LightMap]' )
     );
 
-    it( 'Symbol.hasInstance should be false if instance of Map',
-        () => expect( new Map() instanceof LightMap ).to.eq( false )
-    );
+    describe( 'Symbol.hasInstance', () => {
+        it( 'should be false if instance of Map', () => {
+            expect( new Map() instanceof LightMap ).to.eq( false );
+        } );
 
-    it( 'Symbol.hasInstance should be true if instance of LightMap',
-        () => expect( new LightMap() instanceof LightMap ).to.eq( true )
-    );
+        it( 'should be true if instance of LightMap', () => {
+            expect( new LightMap() instanceof LightMap ).to.eq( true );
+        } );
+
+        it( 'should return false if variable being checked is not defined and does not have "constructor" property',
+            () => {
+                expect( 0 instanceof LightMap ).to.eq( false );
+                expect( '' instanceof LightMap ).to.eq( false );
+                expect( null instanceof LightMap ).to.eq( false );
+                expect( undefined instanceof LightMap ).to.eq( false );
+                expect( {} instanceof LightMap ).to.eq( false );
+                expect( new LightMap( [ [ 'a', null ] ] ).toObject() ).to.deep.eq( { a: null } );
+            }
+        );
+    } );
 } );
