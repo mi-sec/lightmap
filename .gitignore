@@ -498,3 +498,5 @@ paket-files/
 
 # JetBrains Rider
 *.sln.iml
+
+docs
