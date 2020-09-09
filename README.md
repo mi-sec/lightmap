@@ -13,6 +13,11 @@ LightMap is an extension of Map that adds iterative extensions to Map like `map`
 
 [![NPM](https://nodei.co/npm/@mi-sec/lightmap.png?downloads=true&stars=true&downloadRank=true)](https://www.npmjs.com/package/@mi-sec/lightmap)
 
+![CodeQL](https://github.com/mi-sec/lightmap/workflows/CodeQL/badge.svg)
+![LightMap tests](https://github.com/mi-sec/lightmap/workflows/LightMap%20tests/badge.svg)
+![LightMap lint](https://github.com/mi-sec/lightmap/workflows/LightMap%20lint/badge.svg)
+![Generate GitHub Pages](https://github.com/mi-sec/lightmap/workflows/Generate%20GitHub%20Pages/badge.svg)
+
 ### Installation
 
 `npm i @mi-sec/lightmap`
