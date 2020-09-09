@@ -1,4 +1,4 @@
-name: Generate GitHub Pages Example
+name: Generate GitHub Pages
 
 on:
   push:

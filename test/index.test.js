@@ -451,6 +451,18 @@ describe( 'LightMap', () => {
         () => expect( Object.prototype.toString.call( new LightMap() ) ).to.eq( '[object LightMap]' )
     );
 
+    it( 'Symbol.species should equal Map',
+        () => {
+            const
+                a = new LightMap( [ [ 'a', 1 ], [ 'a', 2 ] ] ),
+                b = new Map( [ [ 'a', 1 ], [ 'a', 2 ] ] );
+
+            expect( LightMap[ Symbol.species ] ).to.eq( Map );
+            expect( a instanceof LightMap[ Symbol.species ] ).to.eq( true );
+            expect( b instanceof LightMap[ Symbol.species ] ).to.eq( true );
+        }
+    );
+
     describe( 'Symbol.hasInstance', () => {
         it( 'should be false if instance of Map', () => {
             expect( new Map() instanceof LightMap ).to.eq( false );
