@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><p align="center">
+  <img src="https://repository-images.githubusercontent.com/136985658/d04d2300-8125-11e9-8377-864d0542984f"
+       alt="LightMap"
+       width="300px"
+  />
+</p>
+<p align="center">Fast Map extension for Node.js & The Browser</p>
+<h1>LightMap</h1>
+<p>LightMap is an extension of Map that adds iterative extensions to Map like <code>map</code>, <code>filter</code>, <code>reduce</code>, <code>sort</code>, etc.</p>
+<p><a href="https://www.npmjs.com/package/@mi-sec/lightmap"><img src="https://nodei.co/npm/@mi-sec/lightmap.png?downloads=true&amp;stars=true&amp;downloadRank=true" alt="NPM"></a></p>
+<h3>Installation</h3>
+<p><code>npm i @mi-sec/lightmap</code></p>
+<h3>Usage</h3>
+<p><strong>Basic usage:</strong></p>
+<pre class="prettyprint source"><code>const LightMap = require( '@mi-sec/lightmap' );
+
+const x = new LightMap( [ [ 'a', 'hello' ], [ 'b', 'world' ] ] );
+// LightMap { 'a' => 'hello', 'b' => 'world' }
+</code></pre>
+<p><strong>Map usage:</strong></p>
+<p>For standard <code>Map</code> usage please refer to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">MDN Web Docs</a></p>
+<p><strong><code>.filter</code>:</strong></p>
+<p>Filter LightMap based on keys and values based in.
+Comparisons can be made on the key and/or value.</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 'hello' ], [ 'b', 'world' ] ] );
+
+x.filter( ( val, key ) => {
+	return key === 'a';
+} );
+// LightMap { 'a' => 'hello' }
+</code></pre>
+<p><strong><code>.map</code>:</strong></p>
+<p>Map LightMap with new key and/or value.
+Return the new item in a &quot;tuple&quot; form matching the Map paradigm (<code>[ x, y ]</code>).</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 10 ], [ 'b', 20 ] ] );
+
+x.map( ( val, key ) => {
+	return [ key, val + 10 ];
+} );
+// LightMap { 'a' => 20, 'b' => 30 }
+</code></pre>
+<p><strong><code>.reduce</code>:</strong></p>
+<p>Reduce LightMap with new value.
+Must return the carriage value just like Array.reduce.</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 'hello' ], [ 'b', 'world' ] ] );
+
+x.reduce( ( r, [ key, val ] ) => {
+	r += val + ' ';
+	return r;
+}, '' );
+// hello world 
+</code></pre>
+<p><strong><code>.sortKeys</code>:</strong></p>
+<p>Map LightMap with sorted key-value pairs.</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'b', 'world' ], [ 'a', 'hello' ] ] );
+
+x.sortKeys()
+// LightMap { 'a' => 'hello', 'b' => 'world' }
+</code></pre>
+<p><strong><code>.sortValues</code>:</strong></p>
+<p>Map LightMap with sorted key-value pairs sorted by value.</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 10 ], [ 'b', 5 ], [ 'c', 1 ] ] );
+
+x.sortValues( ( a, b ) => a >= b )
+// LightMap { 'c' => 1, 'b' => 5, 'a' => 10 }
+
+x.sortValues( ( a, b ) => a &lt;= b )
+// LightMap { 'a' => 10, 'b' => 5, 'c' => 1 }
+</code></pre>
+<p><strong><code>.mapToArray</code>:</strong></p>
+<p>maps a LightMap object to an array of arrays in the Map Pattern (re-constructable pattern)</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
+x.mapToArray();
+// [ [ 'a', 0 ], [ 'b', 1 ] ]
+</code></pre>
+<p><strong><code>.toJSON</code>:</strong></p>
+<p>Native class override - returns <code>.mapToArray</code> method</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
+x.toJSON();
+// [ [ 'a', 0 ], [ 'b', 1 ] ]
+</code></pre>
+<p><strong><code>.toString</code>:</strong></p>
+<p>Native class override - returns JSON stringified <code>.mapToArray</code></p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
+x.toString();
+// [[&quot;a&quot;,0],[&quot;b&quot;,1]]
+</code></pre>
+<p><strong><code>.indexOf</code>:</strong></p>
+<p>returns the first index at which a given element can be found in the array, or -1 if it is not present</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
+x.indexOf( 'b' );
+// 1
+</code></pre>
+<p><strong><code>[ Symbol.replace ]</code>:</strong></p>
+<p>symbol specifies the method that replaces matched substrings of a string</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ '{{ a }}', 'hello' ], [ '{{ b }}', 'world' ] ] );
+
+'{{ a }} {{ b }}'.replace( x );
+// hello world
+</code></pre>
+<p><strong><code>[ Symbol.toPrimitive( string ) ]</code>:</strong></p>
+<p>symbol that specifies a function valued property that is called to convert an object to a primitive value</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
+'' + x;
+// [[&quot;a&quot;,0],[&quot;b&quot;,1]]
+</code></pre>
+<p><strong><code>[ Symbol.toPrimitive( number ) ]</code>:</strong></p>
+<p>symbol that specifies a function valued property that is called to convert an object to a primitive value</p>
+<pre class="prettyprint source"><code>const x = new LightMap( [ [ 'a', 0 ], [ 'b', 1 ] ] );
+
++x;
+// 2 (size of the Map)
+</code></pre></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LightMap.html">LightMap</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Sep 09 2020 19:38:49 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
