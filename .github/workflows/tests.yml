@@ -2,6 +2,10 @@ name: 'LightMap tests'
 
 on:
   push:
+    branches:
+      - '*'
+      - '*/*'
+      - '!gh-pages'
     tags-ignore:
       - '**'
 

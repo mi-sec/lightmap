@@ -2,6 +2,10 @@ name: 'LightMap lint'
 
 on:
   push:
+    branches:
+      - '*'
+      - '*/*'
+      - '!gh-pages'
     tags-ignore:
       - '**'
 
