@@ -355,16 +355,18 @@ class LightMap extends Map
     // TODO: check for circular references
     toObject()
     {
-        return this.reduce(
-            ( r, [ k, v ] ) => {
-                if ( v instanceof LightMap ) {
-                    v = v.toObject();
-                }
+        const
+            obj = Object.fromEntries( this ),
+            keys = Object.keys( obj );
+        
+        for ( let i = 0; i < keys.length; i++ ) {
+            const key = keys[ i ];
+            if ( obj[ key ] instanceof Map ) {
+                obj[ key ] = obj[ key ].toObject();
+            }
+        }
 
-                r[ k ] = v;
-                return r;
-            }, {}
-        );
+        return obj;
     }
 
     toJSON()
